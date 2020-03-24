@@ -2,24 +2,37 @@ module.exports = {
 
     generateReadMe: (answers) => {
       return `
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <title>Document</title>
-      </head>
-      <body>
-        <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-          <h3>Example heading <span class="badge badge-secondary">Contact Me</span></h3>
-          <ul class="list-group">
-            <li class="list-group-item">My GitHub username is ${answers.github}</li>
-          </ul>
-        </div>
-      </div>
-      </body>
-      </html>`;
-      }
-  }
+# ${answers.title} 
+${answers.description}
+
+<!-- badge -->
+${answers.license} 
+
+## Table of Contents: 
+* [Installation](#installation)
+* [Usage](#usage)
+* [Contributing](#contributing)
+* [Tests](#tests)
+* [Questions?](#questions)
+
+## Installation  
+<a name="installation"></a>
+${answers.installation}
+
+## Usage
+<a name="usage"></a>
+${answers.usage}
+
+## Contributing
+<a name="contributing"></a>
+${answers.contributing}
+
+## Tests
+<a name="tests"></a>
+${answers.tests}
+
+## Questions? 
+<a name= "questions"></a>
+### email & profile pic`;
+    }
+}

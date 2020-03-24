@@ -1,7 +1,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
-const htmlWriter = require('./readMeWriter');
+const readMeWriter = require('./readMeWriter');
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
@@ -24,18 +24,13 @@ function promptUser() {
     },
     {
       type: "input",
-      name: "tableOfContents",
-      message: "What is your table to contents?"
-    },
-    {
-      type: "input",
       name: "installation",
-      message: "Installation?"
+      message: "How do you install your project?"
     },
     {
       type: "input",
       name: "usage",
-      message: "Usage?"
+      message: "What will this project be used for?"
     },
     {
       type: "input",
@@ -45,17 +40,12 @@ function promptUser() {
     {
       type: "input",
       name: "contributing",
-      message: "Contributing?"
+      message: "How to contribute to this project?"
     },
     {
       type: "input",
       name: "tests",
-      message: "Tests?"
-    },
-    {
-      type: "input",
-      name: "questions",
-      message: "Questions?"
+      message: "What tests are included in this project?"
     },
   ]);
 }
@@ -65,7 +55,9 @@ promptUser()
     // log answers object and to anlyze it- get email & profile pic from github
     // console.log(answers);
 
-    const readMe = readMeWriter.generateReadMe(answers);
+
+
+    const md = readMeWriter.generateReadMe(answers);
     return writeFileAsync("README.md", md);
   })
   .then( () => {
