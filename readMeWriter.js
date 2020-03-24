@@ -6,11 +6,13 @@ module.exports = {
 ${answers.description}
 
 <!-- badge -->
-${answers.license} 
+[![License: ${answers.license}](https://img.shields.io/badge/License-${answers.license}-blue.svg)](https://opensource.org/licenses/${answers.license})
+
 
 ## Table of Contents: 
 * [Installation](#installation)
 * [Usage](#usage)
+* [License](#license)
 * [Contributing](#contributing)
 * [Tests](#tests)
 * [Questions?](#questions)
@@ -22,6 +24,10 @@ ${answers.installation}
 ## Usage
 <a name="usage"></a>
 ${answers.usage}
+
+## License
+<a name="license"></a>
+${answers.license}
 
 ## Contributing
 <a name="contributing"></a>
