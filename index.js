@@ -1,4 +1,5 @@
 const inquirer = require("inquirer");
+const axios = require("axios");
 const fs = require("fs");
 const util = require("util");
 const readMeWriter = require('./readMeWriter');
@@ -54,12 +55,25 @@ promptUser()
   .then( (answers) => {
     // log answers object and to anlyze it- get email & profile pic from github
     // console.log(answers);
-
-
-
     const md = readMeWriter.generateReadMe(answers);
-    return writeFileAsync("README.md", md);
+    writeFileAsync("README.md", md);
+    return answers; 
   })
+  .then( (answers) => {
+    const queryUrl = `https://api.github.com/users/${answers.github}/events/public`;
+
+    console.log(queryUrl);
+    axios.get(queryUrl).then( (response) => {
+      console.log(response.type);
+      let email = response.data[0].email;
+      let pic = response.data[0].avatar_url; 
+
+      console.log(email);
+      console.log(pic);
+      
+    });
+  })
+      
   .then( () => {
     console.log("Successfully wrote to README.md");
   })
