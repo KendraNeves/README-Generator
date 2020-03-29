@@ -39,6 +39,10 @@ ${answers.tests}
 
 ## Questions? 
 <a name= "questions"></a>
-### email & profile pic`;
+### Email:  ${answers.email}
+### Profile Picture: 
+<img src="${answers.pic}">
+
+`;
     }
 }

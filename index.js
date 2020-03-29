@@ -52,31 +52,21 @@ function promptUser() {
 }
 
 promptUser()
+  
+  .then( async (answers) => {
+    const queryUrl = `https://api.github.com/users/${answers.github}`;
+    response = await axios.get(queryUrl);
+    answers.email = response.data.email;
+    answers.pic = response.data.avatar_url; 
+    return answers;
+  })
   .then( (answers) => {
-    // log answers object and to anlyze it- get email & profile pic from github
-    // console.log(answers);
     const md = readMeWriter.generateReadMe(answers);
     writeFileAsync("README.md", md);
     return answers; 
   })
-  .then( (answers) => {
-    const queryUrl = `https://api.github.com/users/${answers.github}/events/public`;
+    
 
-    console.log(queryUrl);
-    axios.get(queryUrl).then( (response) => {
-      console.log(response.type);
-      let email = response.data[0].email;
-      let pic = response.data[0].avatar_url; 
-
-      console.log(email);
-      console.log(pic);
-      
-    });
-  })
-      
-  .then( () => {
-    console.log("Successfully wrote to README.md");
-  })
   .catch(function(error) {
     console.log(error);
   });
